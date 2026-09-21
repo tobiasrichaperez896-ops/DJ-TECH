@@ -22,6 +22,8 @@ loadLocalEnv();
 
 const PORT = Number(process.env.PORT || 3000);
 const GROQ_API_KEY = process.env.GROQ_API_KEY || '';
+const RESEND_API_KEY = process.env.RESEND_API_KEY || '';
+const RESEND_FROM = process.env.RESEND_FROM || 'DJ TECH <onboarding@resend.dev>';
 const ORDER_FORWARD_URL = process.env.ORDER_FORWARD_URL || '';
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || '';
 const SMTP_HOST = process.env.SMTP_HOST || 'smtp.gmail.com';
@@ -105,6 +107,39 @@ async function handleOrder(payload) {
       request.end();
     });
     return { accepted: true, configured: true, method: 'forward-url' };
+  }
+
+  if (RESEND_API_KEY && ADMIN_EMAIL) {
+    const body = JSON.stringify({
+      from: RESEND_FROM,
+      to: [ADMIN_EMAIL],
+      subject: 'Nuevo pedido - DJ TECH',
+      text: payload.summary || 'Pedido sin resumen'
+    });
+    await new Promise((resolve, reject) => {
+      const request = https.request({
+        hostname: 'api.resend.com',
+        path: '/emails',
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${RESEND_API_KEY}`,
+          'Content-Type': 'application/json',
+          'Content-Length': Buffer.byteLength(body)
+        }
+      }, (response) => {
+        let data = '';
+        response.on('data', (chunk) => { data += chunk; });
+        response.on('end', () => {
+          if (response.statusCode >= 200 && response.statusCode < 300) resolve();
+          else reject(new Error(`resend-${response.statusCode}: ${data.slice(0, 300)}`));
+        });
+      });
+      request.setTimeout(15000, () => request.destroy(new Error('resend-timeout')));
+      request.on('error', reject);
+      request.write(body);
+      request.end();
+    });
+    return { accepted: true, configured: true, method: 'resend' };
   }
 
   if (!SMTP_USER || !SMTP_PASS || !ADMIN_EMAIL) {
