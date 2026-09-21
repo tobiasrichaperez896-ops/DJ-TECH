@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catálogo | DJ TECH</title>
+    <meta name="description" content="Catálogo completo de tecnología, accesorios y movilidad eléctrica de DJ TECH." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="site-config.js" defer></script>
+    <script src="products.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body data-page="catalogo">
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="index.html" class="brand" aria-label="DJ TECH inicio">
+          <span class="brand-mark">D</span>
+          <span>DJ TECH</span>
+        </a>
+
+        <nav class="nav" aria-label="Navegación principal">
+          <a href="index.html" data-page="inicio">Inicio</a>
+          <a href="catalogo.html" data-page="catalogo">Catálogo</a>
+          <a href="categorias.html" data-page="categorias">Categorías</a>
+          <a href="contacto.html" data-page="contacto">Contacto</a>
+          <a href="carrito.html" data-page="carrito">Carrito</a>
+        </nav>
+
+        <div class="nav-actions">
+          <label class="search-box" aria-label="Buscar productos">
+            <span>🔎</span>
+            <input id="searchInput" type="search" placeholder="Buscar productos..." />
+          </label>
+          <button id="cartToggle" class="cart-button" aria-label="Abrir carrito">
+            🛒
+            <span id="cartCountBadge" class="cart-badge">0</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="page-shell container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Catálogo</p>
+          <h2>Todo en tecnología y movilidad</h2>
+        </div>
+        <span id="catalogResultsCount" class="results-count"></span>
+      </div>
+
+      <div class="filters-bar">
+        <label class="filter-group">
+          <span>Buscar</span>
+          <input id="searchInputCatalog" type="search" placeholder="Ej: auriculares, scooter, cargador..." />
+        </label>
+
+        <label class="filter-group">
+          <span>Categoría</span>
+          <select id="categoryFilter"></select>
+        </label>
+
+        <label class="filter-group">
+          <span>Precio máximo</span>
+          <select id="priceFilter">
+            <option value="999999999">Todos los precios</option>
+            <option value="50000">Hasta $50.000</option>
+            <option value="100000">Hasta $100.000</option>
+            <option value="200000">Hasta $200.000</option>
+            <option value="300000">Hasta $300.000</option>
+          </select>
+        </label>
+
+        <label class="filter-group">
+          <span>Promociones</span>
+          <select id="offerFilter">
+            <option value="all">Todos los productos</option>
+            <option value="offers">Solo ofertas</option>
+          </select>
+        </label>
+
+        <label class="filter-group">
+          <span>Ordenar</span>
+          <select id="sortFilter">
+            <option value="featured">Destacados</option>
+            <option value="price-asc">Precio: menor a mayor</option>
+            <option value="price-desc">Precio: mayor a menor</option>
+            <option value="name">Nombre</option>
+          </select>
+        </label>
+      </div>
+
+      <form id="smartSearchForm" class="smart-search-bar">
+        <div>
+          <strong>Buscador inteligente</strong>
+          <span id="smartSearchStatus">Describí lo que necesitás y ajustamos el catálogo.</span>
+        </div>
+        <input id="smartSearchInput" type="search" placeholder="Ej.: algo para trabajar desde casa por menos de $100.000" />
+        <button class="button primary" type="submit">Interpretar búsqueda</button>
+      </form>
+
+      <div id="catalogGrid" class="catalog-grid"></div>
+    </main>
+
+    <aside id="cartPanel" class="cart-panel" aria-label="Carrito de compras">
+      <div class="cart-header">
+        <h3>Tu carrito</h3>
+        <button id="closeCart" class="icon-button" type="button" aria-label="Cerrar carrito">✕</button>
+      </div>
+      <div id="cartItems" class="cart-items"></div>
+      <div class="cart-summary">
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <strong id="cartSubtotal">$0</strong>
+        </div>
+        <div class="summary-row total-row">
+          <span>Total</span>
+          <strong id="cartTotal">$0</strong>
+        </div>
+        <a href="carrito.html" class="button primary full-width">Finalizar compra</a>
+      </div>
+    </aside>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <a href="index.html" class="brand footer-brand">
+            <span class="brand-mark">D</span>
+            <span>DJ TECH</span>
+          </a>
+          <p>Tu tienda de tecnología y movilidad eléctrica con soluciones prácticas y modernas.</p>
+        </div>
+        <div>
+          <h3>Contacto</h3>
+          <ul>
+            <li>📍 Atención online</li>
+            <li>📞 +54 9 381 341-6726</li>
+            <li>✉️ cocacolau74@gmail.com</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Atención</h3>
+          <ul>
+            <li>Lun-Sat: 9:00 a 18:00</li>
+            <li>WhatsApp: respuesta inmediata</li>
+            <li><a href="#" data-whatsapp-message="Hola DJ TECH, quiero hacer una consulta." >Chatear por WhatsApp</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <p>© 2026 DJ TECH. Demo ficticia para uso comercial.</p>
+      </div>
+    </footer>
+  </body>
+</html>

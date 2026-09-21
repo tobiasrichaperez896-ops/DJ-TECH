@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DJ TECH | Tecnología y movilidad eléctrica</title>
+    <meta name="description" content="DJ TECH es una tienda ficticia de tecnología, accesorios y movilidad eléctrica." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="site-config.js" defer></script>
+    <script src="products.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body data-page="inicio">
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="index.html" class="brand" aria-label="DJ TECH inicio">
+          <span class="brand-mark">D</span>
+          <span>DJ TECH</span>
+        </a>
+
+        <nav class="nav" aria-label="Navegación principal">
+          <a href="index.html" data-page="inicio">Inicio</a>
+          <a href="catalogo.html" data-page="catalogo">Catálogo</a>
+          <a href="categorias.html" data-page="categorias">Categorías</a>
+          <a href="contacto.html" data-page="contacto">Contacto</a>
+          <a href="carrito.html" data-page="carrito">Carrito</a>
+        </nav>
+
+        <div class="nav-actions">
+          <label class="search-box" aria-label="Buscar productos">
+            <span>🔎</span>
+            <input type="search" placeholder="Buscar productos..." />
+          </label>
+          <button id="cartToggle" class="cart-button" aria-label="Abrir carrito">
+            🛒
+            <span id="cartCountBadge" class="cart-badge">0</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <span class="eyebrow">Tecnología moderna • movilidad inteligente</span>
+            <h1>Potenciá tu día con gadgets y movimiento eléctrico.</h1>
+            <p>
+              En DJ TECH encontraras smartphones, audio, accesorios, power banks, periféricos y scooters eléctricos para vivir más conectado y más libre.
+            </p>
+            <div class="hero-actions">
+              <a href="catalogo.html" class="button primary">Ver catálogo</a>
+              <a href="#" data-whatsapp-message="Hola DJ TECH, quiero consultar por productos." class="button secondary">Consultar por WhatsApp</a>
+            </div>
+            <ul class="hero-stats" aria-label="Estadísticas principales">
+              <li><strong>+12.000</strong><span>clientes</span></li>
+              <li><strong>24hs</strong><span>envío</span></li>
+              <li><strong>4.9/5</strong><span>reseñas</span></li>
+            </ul>
+          </div>
+
+          <div class="hero-visual" aria-label="Destacado del día">
+            <div class="floating-card card-top">
+              <span class="chip">Oferta</span>
+              <h3>EcoRide X9</h3>
+              <p>Patinete eléctrico</p>
+              <strong>$329.900</strong>
+            </div>
+            <div class="product-spotlight">
+              <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=900&q=80" alt="Scooter eléctrico DJ TECH" />
+            </div>
+            <div class="floating-card card-bottom">
+              <span class="chip">Entrega</span>
+              <p>Sin cargo para compras mayores a $120.000.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="benefits container" aria-label="Beneficios DJ TECH">
+        <div class="benefit-item">
+          <span>🚚</span>
+          <div>
+            <h3>Envío rápido</h3>
+            <p>Entregas a todo el país</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span>🔒</span>
+          <div>
+            <h3>Pago seguro</h3>
+            <p>Compra protegida</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span>💬</span>
+          <div>
+            <h3>Atención real</h3>
+            <p>Asesoramiento por WhatsApp</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Categorías</p>
+            <h2>Todo para tu vida conectada</h2>
+          </div>
+          <a href="categorias.html" class="text-link">Ver todo</a>
+        </div>
+
+        <div class="category-grid" id="categoryShowcase"></div>
+      </section>
+
+      <section class="section container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Lo más vendido</p>
+            <h2>Productos destacados</h2>
+          </div>
+          <a href="catalogo.html" class="text-link">Ir al catálogo</a>
+        </div>
+
+        <div id="featuredProducts" class="catalog-grid"></div>
+      </section>
+
+      <section class="section container offer-section">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Selección especial</p>
+            <h2>Ofertas de la semana</h2>
+          </div>
+          <a href="catalogo.html?offers=true" class="text-link">Ver todas las ofertas</a>
+        </div>
+        <div id="weeklyOffers" class="catalog-grid"></div>
+      </section>
+
+      <section class="section container recommendation-section">
+        <div class="recommendation-copy">
+          <p class="eyebrow">Asesoramiento inteligente</p>
+          <h2>Contanos qué necesitás y te ayudamos a encontrarlo.</h2>
+          <p>La búsqueda normal sigue funcionando de forma local. Esta sección queda preparada para sumar recomendaciones con IA usando únicamente productos reales del catálogo.</p>
+        </div>
+        <form id="recommendationForm" class="recommendation-form">
+          <label class="filter-group" for="recommendationQuery">¿Qué producto estás buscando?</label>
+          <textarea id="recommendationQuery" rows="4" placeholder="Ej.: quiero un celular para jugar y que tenga buena batería"></textarea>
+          <button class="button primary" type="submit">Buscar recomendación</button>
+          <div id="recommendationResults" class="recommendation-results" aria-live="polite"></div>
+        </form>
+      </section>
+
+      <section class="section container service-grid-section">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Más que una tienda</p>
+            <h2>Te acompañamos antes y después de tu compra.</h2>
+          </div>
+          <a href="contacto.html" class="text-link">Hablar con el equipo</a>
+        </div>
+        <div class="service-grid">
+          <article class="service-card">
+            <span class="service-icon">🛠️</span>
+            <h3>Servicio técnico</h3>
+            <p>Diagnóstico, puesta a punto y orientación para celulares, notebooks, PC, audio y periféricos.</p>
+            <a href="contacto.html?tema=servicio-tecnico" class="text-link">Consultar servicio</a>
+          </article>
+          <article class="service-card">
+            <span class="service-icon">📦</span>
+            <h3>Envíos simples</h3>
+            <p>Coordinamos la entrega según tu localidad y te confirmamos el estado de tu pedido por contacto directo.</p>
+            <a href="contacto.html?tema=envios" class="text-link">Ver opciones de envío</a>
+          </article>
+          <article class="service-card">
+            <span class="service-icon">💬</span>
+            <h3>Atención cercana</h3>
+            <p>¿No sabés qué comprar? Escribinos con tus palabras y te ayudamos a elegir algo que realmente te sirva.</p>
+            <a href="contacto.html?tema=consulta" class="text-link">Contactarnos</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="section container">
+        <div class="about-card">
+          <div>
+            <p class="eyebrow">¿Por qué elegirnos?</p>
+            <h2>Una experiencia de compra pensada para lo digital y lo móvil.</h2>
+          </div>
+          <div class="about-grid">
+            <article>
+              <h3>Curaduría premium</h3>
+              <p>Seleccionamos productos que combinan rendimiento, diseño y valor para cada necesidad.</p>
+            </article>
+            <article>
+              <h3>Soporte real</h3>
+              <p>Te ayudamos a elegir según tu uso, tu espacio y tu presupuesto sin complicarte.</p>
+            </article>
+            <article>
+              <h3>Servicio completo</h3>
+              <p>Compra simple, seguimiento claro y atención para tecnología y movilidad eléctrica.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <aside id="cartPanel" class="cart-panel" aria-label="Carrito de compras">
+      <div class="cart-header">
+        <h3>Tu carrito</h3>
+        <button id="closeCart" class="icon-button" type="button" aria-label="Cerrar carrito">✕</button>
+      </div>
+      <div id="cartItems" class="cart-items"></div>
+      <div class="cart-summary">
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <strong id="cartSubtotal">$0</strong>
+        </div>
+        <div class="summary-row total-row">
+          <span>Total</span>
+          <strong id="cartTotal">$0</strong>
+        </div>
+        <a href="carrito.html" class="button primary full-width">Finalizar compra</a>
+      </div>
+    </aside>
+
+    <div id="productModal" class="modal" aria-hidden="true">
+      <div class="modal-backdrop" data-close="modal"></div>
+      <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="modal-close" type="button" aria-label="Cerrar detalle">✕</button>
+        <div id="modalContent"></div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <a href="index.html" class="brand footer-brand">
+            <span class="brand-mark">D</span>
+            <span>DJ TECH</span>
+          </a>
+          <p>Tu tienda de tecnología y movilidad eléctrica con soluciones prácticas y modernas.</p>
+        </div>
+
+        <div>
+          <h3>Contacto</h3>
+          <ul>
+            <li>📍 Atención online</li>
+            <li>📞 +54 9 381 341-6726</li>
+            <li>✉️ cocacolau74@gmail.com</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Atención</h3>
+          <ul>
+            <li>Lun-Sat: 9:00 a 18:00</li>
+            <li>WhatsApp: respuesta inmediata</li>
+            <li><a href="#" data-whatsapp-message="Hola DJ TECH, quiero hacer una consulta." >Chatear por WhatsApp</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <p>© 2026 DJ TECH. Demo ficticia para uso comercial.</p>
+      </div>
+    </footer>
+  </body>
+</html>

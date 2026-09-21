@@ -1,0 +1,157 @@
+@@<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contacto | DJ TECH</title>
+    <meta name="description" content="Contactá con DJ TECH para consultar productos, presupuesto y soporte." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="site-config.js" defer></script>
+    <script src="products.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body data-page="contacto">
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a href="index.html" class="brand" aria-label="DJ TECH inicio">
+          <span class="brand-mark">D</span>
+          <span>DJ TECH</span>
+        </a>
+
+        <nav class="nav" aria-label="Navegación principal">
+          <a href="index.html" data-page="inicio">Inicio</a>
+          <a href="catalogo.html" data-page="catalogo">Catálogo</a>
+          <a href="categorias.html" data-page="categorias">Categorías</a>
+          <a href="contacto.html" data-page="contacto">Contacto</a>
+          <a href="carrito.html" data-page="carrito">Carrito</a>
+        </nav>
+
+        <div class="nav-actions">
+          <label class="search-box" aria-label="Buscar productos">
+            <span>🔎</span>
+            <input type="search" placeholder="Buscar productos..." />
+          </label>
+          <button id="cartToggle" class="cart-button" aria-label="Abrir carrito">
+            🛒
+            <span id="cartCountBadge" class="cart-badge">0</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="page-shell container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Contacto</p>
+          <h2>Hablemos de tu próxima compra</h2>
+        </div>
+      </div>
+
+      <div class="contact-layout">
+        <section class="contact-card">
+          <span class="eyebrow">Elegí tu camino</span>
+          <h3>¿En qué te damos una mano?</h3>
+          <p>Separá tu consulta y llegá más rápido al equipo correcto. Compras, envíos y soporte tienen recorridos distintos.</p>
+          <ul class="contact-list">
+            <li><strong>📍</strong> Atención online</li>
+            <li><strong>📞</strong> +54 9 381 341-6726</li>
+            <li><strong>✉️</strong> cocacolau74@gmail.com</li>
+            <li><strong>💬</strong> <a href="#" data-whatsapp-message="Hola DJ TECH, quiero hacer una consulta.">Consultar por WhatsApp</a></li>
+          </ul>
+        </section>
+
+        <section class="contact-card">
+          <span class="eyebrow">Compras y envíos</span>
+          <h3>Quiero comprar o saber cómo llega</h3>
+          <p>Para pedidos, cantidades, localidades, tiempos o costos de entrega, empezá desde el carrito.</p>
+          <div class="contact-action-stack">
+            <a href="catalogo.html" class="button secondary">Explorar productos</a>
+            <a href="carrito.html" class="button primary">Ir al carrito</a>
+          </div>
+        </section>
+
+        <section class="contact-card contact-form-card">
+          <span class="eyebrow">Consulta rápida</span>
+          <h3>Hablemos por WhatsApp</h3>
+          <form class="checkout-form contact-form" data-contact-form="general">
+            <label class="filter-group"><span>Tu nombre</span><input name="nombre" type="text" placeholder="¿Cómo te llamás?" required /></label>
+            <label class="filter-group"><span>¿Qué necesitás?</span><textarea name="mensaje" placeholder="Ej.: busco una impresora para casa..." required></textarea></label>
+            <button type="button" class="button primary" data-contact-submit>Enviar consulta</button>
+          </form>
+        </section>
+      </div>
+
+      <section class="contact-services">
+        <article class="contact-card">
+          <span class="eyebrow">Servicio técnico</span>
+          <h3>Tu dispositivo tiene un problema</h3>
+          <p>Contanos qué equipo es y qué le pasa. Vemos diagnóstico, configuración, mantenimiento o puesta a punto.</p>
+          <form class="checkout-form contact-form" data-contact-form="technical">
+            <div class="form-grid"><label class="filter-group"><span>Dispositivo</span><input name="dispositivo" type="text" placeholder="Celular, PC, impresora..." required /></label><label class="filter-group"><span>Problema</span><input name="problema" type="text" placeholder="¿Qué sucede?" required /></label></div>
+            <button type="button" class="button secondary" data-contact-submit>Consultar servicio técnico</button>
+          </form>
+        </article>
+        <article class="contact-card">
+          <span class="eyebrow">Envíos y pedidos</span>
+          <h3>Seguimiento claro de tu compra</h3>
+          <p>El pedido sale desde la web y luego coordinamos disponibilidad, localidad, costo y tiempos de entrega por contacto directo.</p>
+          <ul class="contact-list compact-list"><li>📦 Pedido desde la web</li><li>📍 Coordinación por localidad</li><li>💬 Confirmación por WhatsApp</li></ul>
+          <a href="carrito.html" class="button primary">Ver mi carrito</a>
+        </article>
+      </section>
+    </main>
+
+    <aside id="cartPanel" class="cart-panel" aria-label="Carrito de compras">
+      <div class="cart-header">
+        <h3>Tu carrito</h3>
+        <button id="closeCart" class="icon-button" type="button" aria-label="Cerrar carrito">✕</button>
+      </div>
+      <div id="cartItems" class="cart-items"></div>
+      <div class="cart-summary">
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <strong id="cartSubtotal">$0</strong>
+        </div>
+        <div class="summary-row total-row">
+          <span>Total</span>
+          <strong id="cartTotal">$0</strong>
+        </div>
+        <a href="carrito.html" class="button primary full-width">Finalizar compra</a>
+      </div>
+    </aside>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <a href="index.html" class="brand footer-brand">
+            <span class="brand-mark">D</span>
+            <span>DJ TECH</span>
+          </a>
+          <p>Tu tienda de tecnología y movilidad eléctrica con soluciones prácticas y modernas.</p>
+        </div>
+        <div>
+          <h3>Contacto</h3>
+          <ul>
+            <li>📍 Atención online</li>
+            <li>📞 +54 9 381 341-6726</li>
+            <li>✉️ cocacolau74@gmail.com</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Atención</h3>
+          <ul>
+            <li>Lun-Sat: 9:00 a 18:00</li>
+            <li>WhatsApp: respuesta inmediata</li>
+            <li><a href="#" data-whatsapp-message="Hola DJ TECH, quiero hacer una consulta." >Chatear por WhatsApp</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <p>© 2026 DJ TECH. Demo ficticia para uso comercial.</p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "dj-tech-store",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Backend de integraciones para la tienda DJ TECH",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js"
+  },
+  "dependencies": {
+    "nodemailer": "^7.0.6"
+  }
+}

@@ -1,0 +1,89 @@
+HISTORIAL DE MEJORAS - DJ TECH
+Fecha: 2026-09-20
+
+OBJETIVO
+Convertir la tienda en una plantilla comercial reutilizable para tecnologia, movilidad electrica, soporte tecnico y pedidos online.
+
+CATALOGO
+- El catalogo paso de 30 a 80 productos.
+- Se mantuvo window.DJTECH_PRODUCTS como fuente unica de datos.
+- Cada producto conserva id, nombre, categoria, precio, imagen, descripcion, badge, tags y features.
+- Se agregaron impresoras multifuncion, laser, color, termicas, scanners y consumibles.
+- Tambien se agregaron notebooks, mini PC, tablets, wearables, hogar inteligente, audio, gaming, almacenamiento, cables, accesorios de celular, oficina y movilidad.
+- Los IDs nuevos van del 41 al 80 y no hay IDs duplicados.
+
+BUSQUEDA
+- La busqueda local busca por nombre, categoria, descripcion, tags y caracteristicas.
+- Se agrego normalizacion de lenguaje coloquial: celu, celus, compu, PC, auris, fonos, barato, economico, para jugar e imprimir.
+- El buscador del header lleva la consulta al catalogo mediante catalogo.html?q=.
+- Se mantiene el buscador inteligente con Groq como complemento, nunca como reemplazo del buscador local.
+- El buscador inteligente recibe el catalogo real y solo puede devolver criterios o IDs de productos existentes.
+
+FILTROS Y OFERTAS
+- Filtros por categoria, precio maximo y solo ofertas.
+- Orden por destacados, precio ascendente, precio descendente y nombre.
+- Las ofertas muestran precio anterior y porcentaje de descuento.
+- Los estados sin resultados usan mensajes comerciales, no errores tecnicos.
+
+PEDIDOS Y CORREO
+- El pedido se envia desde la propia pagina mediante POST a /api/order.
+- El formulario solicita nombre, email, telefono, direccion, ciudad y notas.
+- El frontend muestra un estado visible: enviando, enviado o alternativa.
+- El carrito solo se limpia despues de una respuesta aceptada por el backend.
+- Si el backend no esta configurado, se usa mailto como respaldo.
+- El backend soporta Gmail SMTP con Nodemailer.
+- Variables sensibles viven en backend/.env, nunca en HTML ni JavaScript del frontend.
+- SMTP configurado para la cuenta comercial de DJ TECH mediante una contrasena de aplicacion.
+- No guardar ni compartir claves en este historial.
+
+GROQ
+- Backend: /api/smart-search y /api/recommendations.
+- Modelo actual configurado: openai/gpt-oss-20b.
+- La clave se carga desde backend/.env.
+- La IA no inventa productos, precios, stock ni caracteristicas.
+
+NUEVAS SECCIONES
+- Servicio tecnico para celulares, notebooks, PC, impresoras, audio y perifericos.
+- Envio y coordinacion de entregas.
+- Atencion por WhatsApp y contacto comercial.
+- Tarjetas de servicios en inicio y contacto.
+
+ARCHIVOS PRINCIPALES
+- products.js: fuente del catalogo.
+- app.js: busqueda, filtros, IA, carrito, pedidos y UI.
+- style.css: estetica, responsive, animaciones y tarjetas de servicios.
+- index.html: portada, ofertas, recomendador y servicios.
+- catalogo.html: filtros y buscador inteligente.
+- carrito.html: formulario y estado de envio del pedido.
+- contacto.html: soporte tecnico, envios y contacto.
+- backend/server.js: Groq, SMTP y endpoint de pedidos.
+- site-config.js: marca, contacto y endpoints.
+- backend/.env: credenciales locales, no publicar.
+- backend/.env.example: plantilla sin claves reales.
+- package.json: dependencia Nodemailer.
+
+COMANDOS
+- Web estatica: usar Five Server o python -m http.server 8000.
+- Backend: node backend/server.js.
+- Si Node no aparece en PowerShell: C:\Program Files\nodejs\node.exe backend/server.js.
+- No ejecutar dos instancias del backend sobre el mismo puerto 3000.
+
+PENDIENTES POSIBLES
+- Agregar proveedor de envios o calculo real por localidad.
+- Agregar stock real cuando exista una fuente de inventario.
+- Cambiar imagenes demo por fotos propias o del proveedor.
+- Agregar autenticacion de administrador si se crea un panel futuro.
+- Mantener backend/.env fuera de Git y nunca compartir sus valores.
+
+ACTUALIZACION 2026-09-20
+- Se agregaron estados visibles al enviar pedidos desde carrito.html.
+- Cuando el backend esta configurado, el pedido no abre el cliente de email: se envia desde la pagina por SMTP.
+- Si el backend falla, el carrito se conserva para reintentar y se muestra un mensaje claro.
+- Se agrego /api/health para diagnosticar rapidamente si el backend esta activo.
+- Se ajusto CORS para desarrollo local con 127.0.0.1, localhost y Five Server.
+- La pagina de contacto se separo en compras y envios, consulta general y servicio tecnico.
+- Servicio tecnico tiene campos propios de dispositivo y problema.
+- Las consultas generales y tecnicas construyen mensajes dinamicos de WhatsApp.
+- Se mejoro la estetica de contacto con tarjetas, acciones agrupadas y responsive.
+- Se mejoro el responsive movil: navegacion visible y desplazable, catalogo en una columna, carrito sin desborde y formularios adaptados.
+- Se agrego GUIA_PUBLICACION.md con el despliegue separado del frontend estatico y backend Node.js.
