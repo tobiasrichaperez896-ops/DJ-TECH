@@ -11,10 +11,10 @@ window.DJTECH_CONFIG = {
     address: 'Atención online'
   },
   integrations: {
-    orderEndpoint: 'http://127.0.0.1:3000/api/order',
-    smartSearchEndpoint: 'http://127.0.0.1:3000/api/smart-search',
-    recommendationEndpoint: 'http://127.0.0.1:3000/api/recommendations'
-  },
+  orderEndpoint: 'https://dj-tech.onrender.com/api/order',
+  smartSearchEndpoint: 'https://dj-tech.onrender.com/api/smart-search',
+  recommendationEndpoint: 'https://dj-tech.onrender.com/api/recommendations'
+},
   currency: 'ARS',
   shipping: {
     freeFrom: 120000,
