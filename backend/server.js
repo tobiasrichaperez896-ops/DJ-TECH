@@ -25,8 +25,8 @@ const GROQ_API_KEY = process.env.GROQ_API_KEY || '';
 const ORDER_FORWARD_URL = process.env.ORDER_FORWARD_URL || '';
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL || '';
 const SMTP_HOST = process.env.SMTP_HOST || 'smtp.gmail.com';
-const SMTP_PORT = Number(process.env.SMTP_PORT || 465);
-const SMTP_SECURE = process.env.SMTP_SECURE !== 'false';
+const SMTP_PORT = Number(process.env.SMTP_PORT || 587);
+const SMTP_SECURE = process.env.SMTP_SECURE === 'true';
 const SMTP_USER = process.env.SMTP_USER || '';
 const SMTP_PASS = process.env.SMTP_PASS || '';
 
@@ -111,8 +111,20 @@ async function handleOrder(payload) {
     return { accepted: false, configured: false, message: 'Configure SMTP_USER, SMTP_PASS and ADMIN_EMAIL for automatic email delivery.' };
   }
 
-  const transporter = nodemailer.createTransport({ host: SMTP_HOST, port: SMTP_PORT, secure: SMTP_SECURE, auth: { user: SMTP_USER, pass: SMTP_PASS } });
-  await transporter.sendMail({ from: SMTP_USER, to: ADMIN_EMAIL, subject: 'Nuevo pedido - DJ TECH', text: payload.summary || 'Pedido sin resumen' });
+  const transporter = nodemailer.createTransport({
+    host: SMTP_HOST,
+    port: SMTP_PORT,
+    secure: SMTP_SECURE,
+    requireTLS: !SMTP_SECURE,
+    connectionTimeout: 15000,
+    greetingTimeout: 15000,
+    socketTimeout: 20000,
+    auth: { user: SMTP_USER, pass: SMTP_PASS }
+  });
+  await Promise.race([
+    transporter.sendMail({ from: SMTP_USER, to: ADMIN_EMAIL, subject: 'Nuevo pedido - DJ TECH', text: payload.summary || 'Pedido sin resumen' }),
+    new Promise((_, reject) => setTimeout(() => reject(new Error('smtp-timeout')), 25000))
+  ]);
   return { accepted: true, configured: true, method: 'smtp' };
 }
 
